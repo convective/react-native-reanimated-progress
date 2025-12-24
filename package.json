@@ -2,7 +2,7 @@
   "name": "react-native-animated-progress",
   "version": "1.0.0",
   "description": "Animated progress indicators for React Native using react-native-svg and react-native-reanimated",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "source": "src/index.ts",
   "scripts": {
@@ -21,7 +21,7 @@
     "reanimated",
     "svg"
   ],
-  "author": "",
+  "author": "convective",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=17.0.0",
@@ -45,6 +45,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/convective/react-native-animated-progress.git"
+  },
+  "homepage": "https://github.com/convective/react-native-animated-progress#readme",
+  "bugs": {
+    "url": "https://github.com/convective/react-native-animated-progress/issues"
   }
 }
