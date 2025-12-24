@@ -23,9 +23,9 @@ Unlike `react-native-progress` which uses JS thread animations, this package lev
 ## Installation
 
 ```bash
-npm install react-native-reanimated-progress
+npm install @convective/react-native-reanimated-progress
 # or
-yarn add react-native-reanimated-progress
+yarn add @convective/react-native-reanimated-progress
 ```
 
 ### Peer Dependencies
@@ -37,7 +37,7 @@ npm install react-native-svg react-native-reanimated
 ## Quick Start
 
 ```tsx
-import { AnimatedProgressCircle, AnimatedProgressBar } from 'react-native-reanimated-progress';
+import { AnimatedProgressCircle, AnimatedProgressBar } from '@convective/react-native-reanimated-progress';
 
 // Determinate circle (75% complete)
 <AnimatedProgressCircle progress={0.75} size={100} />

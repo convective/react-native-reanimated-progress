@@ -1,5 +1,8 @@
 {
-  "name": "react-native-reanimated-progress",
+  "name": "@convective/react-native-reanimated-progress",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.0",
   "description": "Animated progress indicators for React Native using react-native-svg and react-native-reanimated",
   "main": "lib/index.js",
