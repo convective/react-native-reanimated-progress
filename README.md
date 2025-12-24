@@ -1,4 +1,4 @@
-# react-native-animated-progress
+# react-native-reanimated-progress
 
 Smooth, performant progress indicators for React Native built with `react-native-reanimated` and `react-native-svg`. All animations run on the UI thread for 60fps performance.
 
@@ -23,9 +23,9 @@ Unlike `react-native-progress` which uses JS thread animations, this package lev
 ## Installation
 
 ```bash
-npm install react-native-animated-progress
+npm install react-native-reanimated-progress
 # or
-yarn add react-native-animated-progress
+yarn add react-native-reanimated-progress
 ```
 
 ### Peer Dependencies
@@ -37,7 +37,7 @@ npm install react-native-svg react-native-reanimated
 ## Quick Start
 
 ```tsx
-import { AnimatedProgressCircle, AnimatedProgressBar } from 'react-native-animated-progress';
+import { AnimatedProgressCircle, AnimatedProgressBar } from 'react-native-reanimated-progress';
 
 // Determinate circle (75% complete)
 <AnimatedProgressCircle progress={0.75} size={100} />
