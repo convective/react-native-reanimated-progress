@@ -1,0 +1,50 @@
+{
+  "name": "react-native-animated-progress",
+  "version": "1.0.0",
+  "description": "Animated progress indicators for React Native using react-native-svg and react-native-reanimated",
+  "main": "src/index.ts",
+  "types": "lib/index.d.ts",
+  "source": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "clean": "rm -rf lib"
+  },
+  "keywords": [
+    "react-native",
+    "progress",
+    "animated",
+    "circle",
+    "bar",
+    "spinner",
+    "loading",
+    "reanimated",
+    "svg"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.64.0",
+    "react-native-reanimated": ">=3.0.0",
+    "react-native-svg": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.72.0",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "react-native-reanimated": "^3.5.0",
+    "react-native-svg": "^13.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
