@@ -13,7 +13,7 @@ import Animated, {
 export type AnimatedProgressBarProps = {
   /** Progress value from 0 to 1. Ignored when indeterminate is true. */
   progress?: number;
-  /** Width of the progress bar. If null, fills container width. */
+  /** Width of the progress bar. If null or 0, fills container width via auto-measure. */
   width?: number | null;
   /** Height of the progress bar */
   height?: number;
@@ -53,7 +53,7 @@ export const AnimatedProgressBar = ({
 }: AnimatedProgressBarProps) => {
   const progressValue = useSharedValue(Math.max(0, Math.min(1, progress)));
   const indeterminateValue = useSharedValue(0);
-  const containerWidth = useSharedValue(width ?? 0);
+  const containerWidth = useSharedValue(width || 0);
 
   // Update progress when prop changes
   useEffect(() => {
@@ -89,14 +89,14 @@ export const AnimatedProgressBar = ({
   }, [indeterminate, indeterminateDuration, indeterminateValue]);
 
   const handleLayout = (event: LayoutChangeEvent) => {
-    if (width === null) {
+    if (!width) {
       containerWidth.value = event.nativeEvent.layout.width;
     }
   };
 
   // Update container width when prop changes
   useEffect(() => {
-    if (width !== null) {
+    if (width) {
       containerWidth.value = width;
     }
   }, [width, containerWidth]);
@@ -133,7 +133,7 @@ export const AnimatedProgressBar = ({
       styles.container,
       {
         height,
-        width: (width ?? '100%') as DimensionValue,
+        width: (width || '100%') as DimensionValue,
         backgroundColor: unfilledColor,
         borderRadius,
         borderWidth,
