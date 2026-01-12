@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import Svg, {Circle as SvgCircle} from 'react-native-svg';
 import Animated, {
   useAnimatedProps,
+  useAnimatedStyle,
   useSharedValue,
   withTiming,
   withRepeat,
@@ -95,6 +96,14 @@ export const AnimatedProgressCircle = ({
     };
   }, [indeterminate, spinDuration, spinRotation]);
 
+  // Animated style for spinning container (indeterminate mode)
+  const spinnerContainerStyle = useAnimatedStyle(() => {
+    'worklet';
+    return {
+      transform: [{rotate: `${spinRotation.value}deg`}],
+    };
+  }, [spinRotation]);
+
   // Animated props for determinate progress
   const determinateProps = useAnimatedProps(() => {
     'worklet';
@@ -104,7 +113,7 @@ export const AnimatedProgressCircle = ({
     };
   }, [circumference, isCounterClockwise]);
 
-  // Animated props for indeterminate spinning
+  // Animated props for indeterminate spinning (rotation handled by container)
   const indeterminateProps = useAnimatedProps(() => {
     'worklet';
     // Show about 25% of the circle for the spinning arc
@@ -113,41 +122,50 @@ export const AnimatedProgressCircle = ({
     return {
       strokeDasharray: [arcLength, gapLength],
       strokeDashoffset: 0,
-      rotation: spinRotation.value,
     };
-  }, [circumference, spinRotation]);
+  }, [circumference]);
 
   const animatedProps = indeterminate ? indeterminateProps : determinateProps;
 
+  const renderSvg = () => (
+    <Svg width={size} height={size}>
+      {/* Background circle */}
+      <SvgCircle
+        cx={center}
+        cy={center}
+        r={radius}
+        stroke={unfilledColor}
+        strokeWidth={thickness}
+        fill={fill}
+      />
+      {/* Animated progress/spinner arc */}
+      <AnimatedSvgCircle
+        cx={center}
+        cy={center}
+        r={radius}
+        stroke={color}
+        strokeWidth={thickness}
+        fill="transparent"
+        strokeDasharray={
+          indeterminate ? undefined : `${circumference}, ${circumference}`
+        }
+        animatedProps={animatedProps}
+        strokeLinecap="round"
+        rotation={-90}
+        origin={`${center}, ${center}`}
+      />
+    </Svg>
+  );
+
   return (
     <View style={[styles.container, {width: size, height: size}]}>
-      <Svg width={size} height={size}>
-        {/* Background circle */}
-        <SvgCircle
-          cx={center}
-          cy={center}
-          r={radius}
-          stroke={unfilledColor}
-          strokeWidth={thickness}
-          fill={fill}
-        />
-        {/* Animated progress/spinner arc */}
-        <AnimatedSvgCircle
-          cx={center}
-          cy={center}
-          r={radius}
-          stroke={color}
-          strokeWidth={thickness}
-          fill="transparent"
-          strokeDasharray={
-            indeterminate ? undefined : `${circumference}, ${circumference}`
-          }
-          animatedProps={animatedProps}
-          strokeLinecap="round"
-          rotation={indeterminate ? undefined : -90}
-          origin={`${center}, ${center}`}
-        />
-      </Svg>
+      {indeterminate ? (
+        <Animated.View style={spinnerContainerStyle}>
+          {renderSvg()}
+        </Animated.View>
+      ) : (
+        renderSvg()
+      )}
       {children && (
         <View style={StyleSheet.absoluteFill}>
           <View style={styles.childrenContainer}>{children}</View>
