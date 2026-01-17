@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Animated progress indicators for React Native using react-native-svg and react-native-reanimated",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
